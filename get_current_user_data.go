@@ -16,7 +16,7 @@ type GetCurrentUserDataResponse struct {
 	ReturnData GetCurrentUserDataReturnData `json:"returnData"`
 }
 
-func newGetCurrentUserDataCommand() *Command {
+func NewGetCurrentUserDataCommand() *Command {
 	return &Command{
 		Command: "getCurrentUserData",
 	}

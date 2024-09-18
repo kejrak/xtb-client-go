@@ -21,7 +21,7 @@ type GetNewsResponse struct {
 	ReturnData []NewsTopicRecord `json:"returnData"`
 }
 
-func newGetNewsCommand(end, start time.Time) *Command {
+func NewGetNewsCommand(end, start time.Time) *Command {
 	return &Command{
 		Command: "getNews",
 		Arguments: &getNewsRequest{

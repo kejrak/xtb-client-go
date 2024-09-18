@@ -9,7 +9,7 @@ type GetTradesResponse struct {
 	ReturnData []TradeRecord
 }
 
-func newGetTradesCommand(openedOnly bool) *Command {
+func NewGetTradesCommand(openedOnly bool) *Command {
 	return &Command{
 		Command: "getTrades",
 		Arguments: &getTradesRequest{

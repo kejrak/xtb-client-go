@@ -15,7 +15,7 @@ type GetCommissionDefResponse struct {
 	ReturnData GetCommissionDefReturnData `json:"returnData"`
 }
 
-func newGetCommissionDefCommand(symbol string, volume float64) *Command {
+func NewGetCommissionDefCommand(symbol string, volume float64) *Command {
 	return &Command{
 		Command: "getCommissionDef",
 		Arguments: &getCommissionDefRequest{

@@ -12,7 +12,7 @@ type GetTradesHistoryResponse struct {
 	ReturnData []TradeRecord `json:"returnData"`
 }
 
-func newGetTradesHistoryCommand(end, start time.Time) *Command {
+func NewGetTradesHistoryCommand(end, start time.Time) *Command {
 	return &Command{
 		Command: "getTradesHistory",
 		Arguments: &getTradesHistoryRequest{

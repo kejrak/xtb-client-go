@@ -22,7 +22,7 @@ type GetChartLastRequestResponse struct {
 	ReturnData GetChartLastRequestReturnData
 }
 
-func newGetChartLastRequestCommand(period Period, start time.Time, symbol string) *Command {
+func NewGetChartLastRequestCommand(period Period, start time.Time, symbol string) *Command {
 	return &Command{
 		Command: "getChartLastRequest",
 		Arguments: &getChartLastRequest{

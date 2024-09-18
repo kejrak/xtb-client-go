@@ -38,7 +38,7 @@ type GetTradeRecordsResponse struct {
 	ReturnData []TradeRecord `json:"returnData"`
 }
 
-func newGetTradeRecordsCommand(orders []int) *Command {
+func NewGetTradeRecordsCommand(orders []int) *Command {
 	return &Command{
 		Command: "getTradeRecords",
 		Arguments: &getTradeRecordsRequest{

@@ -1,6 +1,6 @@
 package xtb
 
-func newLogoutCommand() *Command {
+func NewLogoutCommand() *Command {
 	return &Command{
 		Command: "logout",
 	}

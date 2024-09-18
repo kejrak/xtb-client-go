@@ -10,7 +10,7 @@ type GetServerTimeResponse struct {
 	ReturnData GetServerTimeReturnData `json:"returnData"`
 }
 
-func newGetServerTimeCommand() *Command {
+func NewGetServerTimeCommand() *Command {
 	return &Command{
 		Command: "getServerTime",
 	}

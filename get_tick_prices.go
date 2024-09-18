@@ -31,7 +31,7 @@ type GetTickPricesResponse struct {
 	ReturnData GetTickPricesReturnData `json:"returnData"`
 }
 
-func newGetTickPricesCommand(level int, symbols []string, timestamp time.Time) *Command {
+func NewGetTickPricesCommand(level int, symbols []string, timestamp time.Time) *Command {
 	return &Command{
 		Command: "getTickPrices",
 		Arguments: &getTickPricesRequest{

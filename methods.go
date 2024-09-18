@@ -12,7 +12,7 @@ func (c *Client) Close() error {
 // GetVersion performs getVersion command described here: http://developers.xstore.pro/documentation/#getVersion
 func (c *Client) GetVersion() (*GetVersionResponse, error) {
 	res := &GetVersionResponse{}
-	err := c.executeCommand(newGetVersionCommand(), &res)
+	err := c.executeCommand(NewGetVersionCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -22,7 +22,7 @@ func (c *Client) GetVersion() (*GetVersionResponse, error) {
 // Ping performs ping command described here: http://developers.xstore.pro/documentation/#ping
 func (c *Client) Ping() (*PingResponse, error) {
 	res := &PingResponse{}
-	err := c.executeCommand(newPingCommand(), &res)
+	err := c.executeCommand(NewPingCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -34,7 +34,7 @@ func (c *Client) Ping() (*PingResponse, error) {
 // Login performs login command described here: http://developers.xstore.pro/documentation/#login
 func (c *Client) Login(user, password string) (*LoginResponse, error) {
 	res := &LoginResponse{}
-	err := c.executeCommand(newLoginCommand(user, password), &res)
+	err := c.executeCommand(NewLoginCommand(user, password), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -44,7 +44,7 @@ func (c *Client) Login(user, password string) (*LoginResponse, error) {
 // Login performs login command described here: http://developers.xstore.pro/documentation/#login
 func (c *Client) Logout() (*Response, error) {
 	res := &Response{}
-	err := c.executeCommand(newLogoutCommand(), &res)
+	err := c.executeCommand(NewLogoutCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *Client) Logout() (*Response, error) {
 // GetAllSymbols performs getAllSymbols command described here: http://developers.xstore.pro/documentation/#getAllSymbols
 func (c *Client) GetAllSymbols() (*GetAllSymbolsResponse, error) {
 	res := &GetAllSymbolsResponse{}
-	err := c.executeCommand(newGetAllSymbolsCommand(), &res)
+	err := c.executeCommand(NewGetAllSymbolsCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ func (c *Client) GetAllSymbols() (*GetAllSymbolsResponse, error) {
 // GetAllSymbols performs getAllSymbols command described here: http://developers.xstore.pro/documentation/#getSymbol
 func (c *Client) GetSymbol(symbol string) (*GetSymbolResponse, error) {
 	res := &GetSymbolResponse{}
-	err := c.executeCommand(newGetSymbolCommand(symbol), &res)
+	err := c.executeCommand(NewGetSymbolCommand(symbol), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (c *Client) GetSymbol(symbol string) (*GetSymbolResponse, error) {
 // GetCalendar performs getCalendar command described here: http://developers.xstore.pro/documentation/#getCalendar
 func (c *Client) GetCalendar() (*GetCalendarResponse, error) {
 	res := &GetCalendarResponse{}
-	err := c.executeCommand(newGetCalendarCommand(), &res)
+	err := c.executeCommand(NewGetCalendarCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ func (c *Client) GetCalendar() (*GetCalendarResponse, error) {
 // GetChartLastRequest performs getChartLastRequest command described here: http://developers.xstore.pro/documentation/#getChartLastRequest
 func (c *Client) GetChartLastRequest(period Period, start time.Time, symbol string) (*GetChartLastRequestResponse, error) {
 	res := &GetChartLastRequestResponse{}
-	err := c.executeCommand(newGetChartLastRequestCommand(period, start, symbol), &res)
+	err := c.executeCommand(NewGetChartLastRequestCommand(period, start, symbol), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +100,7 @@ func (c *Client) GetChartLastRequest(period Period, start time.Time, symbol stri
 // GetChartRangeRequest performs getChartRangeRequest command described here: http://developers.xstore.pro/documentation/#getChartRangeRequest
 func (c *Client) GetChartRangeRequest(end, start time.Time, period Period, symbol string, ticks *int) (*GetChartRangeRequestResponse, error) {
 	res := &GetChartRangeRequestResponse{}
-	err := c.executeCommand(newGetChartRangeRequestCommand(end, start, period, symbol, ticks), &res)
+	err := c.executeCommand(NewGetChartRangeRequestCommand(end, start, period, symbol, ticks), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func (c *Client) GetChartRangeRequest(end, start time.Time, period Period, symbo
 // GetCommissionDef performs getCommissionDef command described here: http://developers.xstore.pro/documentation/#getCommissionDef
 func (c *Client) GetCommissionDef(symbol string, volume float64) (*GetCommissionDefResponse, error) {
 	res := &GetCommissionDefResponse{}
-	err := c.executeCommand(newGetCommissionDefCommand(symbol, volume), &res)
+	err := c.executeCommand(NewGetCommissionDefCommand(symbol, volume), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -124,7 +124,7 @@ func (c *Client) GetCommissionDef(symbol string, volume float64) (*GetCommission
 // GetCurrentUserData performs getCurrentUserData command described here: http://developers.xstore.pro/documentation/#getCurrentUserData
 func (c *Client) GetCurrentUserData() (*GetCurrentUserDataResponse, error) {
 	res := &GetCurrentUserDataResponse{}
-	err := c.executeCommand(newGetCurrentUserDataCommand(), &res)
+	err := c.executeCommand(NewGetCurrentUserDataCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func (c *Client) GetCurrentUserData() (*GetCurrentUserDataResponse, error) {
 // GetIbsHistory performs getIbsHistory command described here: http://developers.xstore.pro/documentation/#getIbsHistory
 func (c *Client) GetIbsHistory(end, start time.Time) (*GetIbsHistoryResponse, error) {
 	res := &GetIbsHistoryResponse{}
-	err := c.executeCommand(newGetIbsHistoryCommand(end, start), &res)
+	err := c.executeCommand(NewGetIbsHistoryCommand(end, start), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -148,7 +148,7 @@ func (c *Client) GetIbsHistory(end, start time.Time) (*GetIbsHistoryResponse, er
 // GetMarginLevel performs getMarginLevel command described here: http://developers.xstore.pro/documentation/#getMarginLevel
 func (c *Client) GetMarginLevel() (*GetMarginLevelResponse, error) {
 	res := &GetMarginLevelResponse{}
-	err := c.executeCommand(newGetMarginLevelCommand(), &res)
+	err := c.executeCommand(NewGetMarginLevelCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -158,19 +158,19 @@ func (c *Client) GetMarginLevel() (*GetMarginLevelResponse, error) {
 // GetMarginTrade performs getMarginTrade command described here: http://developers.xstore.pro/documentation/#getMarginTrade
 func (c *Client) GetMarginTrade(symbol string, volume float64) (*GetMarginTradeResponse, error) {
 	res := &GetMarginTradeResponse{}
-	err := c.executeCommand(newGetMarginTradeCommand(symbol, volume), &res)
+	err := c.executeCommand(NewGetMarginTradeCommand(symbol, volume), &res)
 	if err != nil {
 		return nil, err
 	}
 	return res, nil
 }
 
-// newS METHODS //
+// NewS METHODS //
 
-// Getnews performs getnews command described here: http://developers.xstore.pro/documentation/#getnews
+// GetNews performs getNews command described here: http://developers.xstore.pro/documentation/#getNews
 func (c *Client) GetNews(end, start time.Time) (*GetNewsResponse, error) {
 	res := &GetNewsResponse{}
-	err := c.executeCommand(newGetNewsCommand(end, start), &res)
+	err := c.executeCommand(NewGetNewsCommand(end, start), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -182,7 +182,7 @@ func (c *Client) GetNews(end, start time.Time) (*GetNewsResponse, error) {
 // GetProfitCalculation performs getProfitCalculation command described here: http://developers.xstore.pro/documentation/#getProfitCalculation
 func (c *Client) GetProfitCalculation(closePrice, openPrice, volume float32, cmd TradeCommand, symbol string) (*GetProfitCalculationResponse, error) {
 	res := &GetProfitCalculationResponse{}
-	err := c.executeCommand(newGetProfitCalculationCommand(closePrice, openPrice, volume, cmd, symbol), &res)
+	err := c.executeCommand(NewGetProfitCalculationCommand(closePrice, openPrice, volume, cmd, symbol), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -194,7 +194,7 @@ func (c *Client) GetProfitCalculation(closePrice, openPrice, volume float32, cmd
 // GetServerTime performs getServerTime command described here: http://developers.xstore.pro/documentation/#getServerTime
 func (c *Client) GetServerTime() (*GetServerTimeResponse, error) {
 	res := &GetServerTimeResponse{}
-	err := c.executeCommand(newGetServerTimeCommand(), &res)
+	err := c.executeCommand(NewGetServerTimeCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -206,7 +206,7 @@ func (c *Client) GetServerTime() (*GetServerTimeResponse, error) {
 // GetStepRules performs getStepRules command described here: http://developers.xstore.pro/documentation/#getStepRules
 func (c *Client) GetStepRules() (*GetStepRulesResponse, error) {
 	res := &GetStepRulesResponse{}
-	err := c.executeCommand(newGetStepRulesCommand(), &res)
+	err := c.executeCommand(NewGetStepRulesCommand(), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -218,7 +218,7 @@ func (c *Client) GetStepRules() (*GetStepRulesResponse, error) {
 // GetTickPrices performs getTickPrices command described here: http://developers.xstore.pro/documentation/#getTickPrices
 func (c *Client) GetTickPrices(level int, symbols []string, timestamp time.Time) (*GetTickPricesResponse, error) {
 	res := &GetTickPricesResponse{}
-	err := c.executeCommand(newGetTickPricesCommand(level, symbols, timestamp), &res)
+	err := c.executeCommand(NewGetTickPricesCommand(level, symbols, timestamp), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -230,7 +230,7 @@ func (c *Client) GetTickPrices(level int, symbols []string, timestamp time.Time)
 // GetTradeRecords performs getTradeRecords command described here: http://developers.xstore.pro/documentation/#getTradeRecords
 func (c *Client) GetTradeRecords(orders []int) (*GetTradeRecordsResponse, error) {
 	res := &GetTradeRecordsResponse{}
-	err := c.executeCommand(newGetTradeRecordsCommand(orders), &res)
+	err := c.executeCommand(NewGetTradeRecordsCommand(orders), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -240,7 +240,7 @@ func (c *Client) GetTradeRecords(orders []int) (*GetTradeRecordsResponse, error)
 // GetTrades performs getTrades command described here: http://developers.xstore.pro/documentation/#getTradeRecords
 func (c *Client) GetTrades(openedOnly bool) (*GetTradesResponse, error) {
 	res := &GetTradesResponse{}
-	err := c.executeCommand(newGetTradesCommand(openedOnly), &res)
+	err := c.executeCommand(NewGetTradesCommand(openedOnly), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -250,7 +250,7 @@ func (c *Client) GetTrades(openedOnly bool) (*GetTradesResponse, error) {
 // GetTradesHistory performs getTradesHistory command described here: http://developers.xstore.pro/documentation/#getTradesHistory
 func (c *Client) GetTradesHistory(end, start time.Time) (*GetTradesHistoryResponse, error) {
 	res := &GetTradesHistoryResponse{}
-	err := c.executeCommand(newGetTradesHistoryCommand(end, start), &res)
+	err := c.executeCommand(NewGetTradesHistoryCommand(end, start), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -260,7 +260,7 @@ func (c *Client) GetTradesHistory(end, start time.Time) (*GetTradesHistoryRespon
 // GetTradingHours performs getTradingHours command described here: http://developers.xstore.pro/documentation/#getTradingHours
 func (c *Client) GetTradingHours(symbols []string) (*GetTradingHoursResponse, error) {
 	res := &GetTradingHoursResponse{}
-	err := c.executeCommand(newGetTradingHoursCommand(symbols), &res)
+	err := c.executeCommand(NewGetTradingHoursCommand(symbols), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -270,7 +270,7 @@ func (c *Client) GetTradingHours(symbols []string) (*GetTradingHoursResponse, er
 // TradeTransaction performs tradeTransaction command described here: http://developers.xstore.pro/documentation/#tradeTransaction
 func (c *Client) TradeTransaction(cmd TradeCommand, customComment string, expiration int64, offset int, order uint, price float64, sl float64, symbol string, tp float64, tradeType TradeType, volume float64) (*TradeTransactionResponse, error) {
 	res := &TradeTransactionResponse{}
-	err := c.executeCommand(newTradeTransactionCommand(cmd, customComment, expiration, offset, order, price, sl, symbol, tp, tradeType, volume), &res)
+	err := c.executeCommand(NewTradeTransactionCommand(cmd, customComment, expiration, offset, order, price, sl, symbol, tp, tradeType, volume), &res)
 	if err != nil {
 		return nil, err
 	}
@@ -280,7 +280,7 @@ func (c *Client) TradeTransaction(cmd TradeCommand, customComment string, expira
 // TradeTransactionStatus performs tradeTransactionStatus command described here: http://developers.xstore.pro/documentation/#tradeTransactionStatus
 func (c *Client) TradeTransactionStatus(order uint) (*TradeTransactionStatusResponse, error) {
 	res := &TradeTransactionStatusResponse{}
-	err := c.executeCommand(newTradeTransactionStatusCommand(order), &res)
+	err := c.executeCommand(NewTradeTransactionStatusCommand(order), &res)
 	if err != nil {
 		return nil, err
 	}

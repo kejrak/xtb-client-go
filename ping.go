@@ -4,7 +4,7 @@ type PingResponse struct {
 	Response
 }
 
-func newPingCommand() *Command {
+func NewPingCommand() *Command {
 	return &Command{
 		Command: "ping",
 	}

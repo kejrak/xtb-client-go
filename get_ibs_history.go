@@ -24,7 +24,7 @@ type GetIbsHistoryResponse struct {
 	ReturnData []IBRecord `json:"returnData"`
 }
 
-func newGetIbsHistoryCommand(end, start time.Time) *Command {
+func NewGetIbsHistoryCommand(end, start time.Time) *Command {
 	return &Command{
 		Command: "getIbsHistory",
 		Arguments: &getIbsHistoryRequest{

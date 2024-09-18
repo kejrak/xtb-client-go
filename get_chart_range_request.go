@@ -24,7 +24,7 @@ type GetChartRangeRequestResponse struct {
 	ReturnData GetChartRangeRequestReturnData
 }
 
-func newGetChartRangeRequestCommand(end, start time.Time, period Period, symbol string, ticks *int) *Command {
+func NewGetChartRangeRequestCommand(end, start time.Time, period Period, symbol string, ticks *int) *Command {
 	return &Command{
 		Command: "getChartRangeRequest",
 		Arguments: &getChartRangeRequest{

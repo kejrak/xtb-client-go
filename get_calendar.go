@@ -16,7 +16,7 @@ type GetCalendarResponse struct {
 	ReturnData []CalendarRecord `json:"returnData"`
 }
 
-func newGetCalendarCommand() *Command {
+func NewGetCalendarCommand() *Command {
 	return &Command{
 		Command: "getCalendar",
 	}

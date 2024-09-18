@@ -14,7 +14,7 @@ type GetMarginTradeResponse struct {
 	ReturnData GetMarginTradeReturnData `json:"returnData"`
 }
 
-func newGetMarginTradeCommand(symbol string, volume float64) *Command {
+func NewGetMarginTradeCommand(symbol string, volume float64) *Command {
 	return &Command{
 		Command: "getMarginTrade",
 		Arguments: &getMarginTradeRequest{

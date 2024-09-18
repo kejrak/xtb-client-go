@@ -16,7 +16,7 @@ type GetStepRulesResponse struct {
 	ReturnData []StepRuleRecord `json:"returnData"`
 }
 
-func newGetStepRulesCommand() *Command {
+func NewGetStepRulesCommand() *Command {
 	return &Command{
 		Command: "getStepRules",
 	}

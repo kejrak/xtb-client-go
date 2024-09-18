@@ -15,7 +15,7 @@ type GetMarginLevelResponse struct {
 	ReturnData GetMarginLevelReturnData `json:"returnData"`
 }
 
-func newGetMarginLevelCommand() *Command {
+func NewGetMarginLevelCommand() *Command {
 	return &Command{
 		Command: "getMarginLevel",
 	}

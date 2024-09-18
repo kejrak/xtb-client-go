@@ -9,7 +9,7 @@ type GetVersionResponse struct {
 	ReturnData GetVersionReturnData
 }
 
-func newGetVersionCommand() *Command {
+func NewGetVersionCommand() *Command {
 	return &Command{
 		Command: "getVersion",
 	}

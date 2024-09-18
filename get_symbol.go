@@ -9,7 +9,7 @@ type GetSymbolResponse struct {
 	ReturnData *SymbolRecord `json:"returnData"`
 }
 
-func newGetSymbolCommand(symbol string) *Command {
+func NewGetSymbolCommand(symbol string) *Command {
 	return &Command{
 		Command: "getSymbol",
 		Arguments: &getSymbolRequest{

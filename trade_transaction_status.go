@@ -18,7 +18,7 @@ type TradeTransactionStatusResponse struct {
 	ReturnData TradeTransactionStatusReturnData `json:"returnData"`
 }
 
-func newTradeTransactionStatusCommand(order uint) *Command {
+func NewTradeTransactionStatusCommand(order uint) *Command {
 	return &Command{
 		Command: "tradeTransactionStatus",
 		Arguments: &tradeTransactionStatusRequest{

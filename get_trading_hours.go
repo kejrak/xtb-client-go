@@ -27,7 +27,7 @@ type GetTradingHoursResponse struct {
 	ReturnData []TradingHoursRecord `json:"returnData"`
 }
 
-func newGetTradingHoursCommand(symbols []string) *Command {
+func NewGetTradingHoursCommand(symbols []string) *Command {
 	return &Command{
 		Command: "getTradingHours",
 		Arguments: &getTradingHoursRequest{

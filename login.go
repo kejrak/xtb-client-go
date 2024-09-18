@@ -12,7 +12,7 @@ type LoginResponse struct {
 	StreamSessionID string `json:"streamSessionId"`
 }
 
-func newLoginCommand(user, password string) *Command {
+func NewLoginCommand(user, password string) *Command {
 	return &Command{
 		Command: "login",
 		Arguments: &loginRequest{

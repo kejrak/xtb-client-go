@@ -17,7 +17,7 @@ type GetProfitCalculationResponse struct {
 	ReturnData GetProfitCalculationReturnData `json:"returnData"`
 }
 
-func newGetProfitCalculationCommand(closePrice, openPrice, volume float32, cmd TradeCommand, symbol string) *Command {
+func NewGetProfitCalculationCommand(closePrice, openPrice, volume float32, cmd TradeCommand, symbol string) *Command {
 	return &Command{
 		Command: "getProfitCalculation",
 		Arguments: &getProfitCalculationRequest{

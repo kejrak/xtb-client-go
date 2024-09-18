@@ -27,7 +27,7 @@ type TradeTransactionResponse struct {
 	ReturnData TradeTransactionReturnData `json:"returnData"`
 }
 
-func newTradeTransactionCommand(cmd TradeCommand, customComment string, expiration int64, offset int, order uint, price float64, sl float64, symbol string, tp float64, tradeType TradeType, volume float64) *Command {
+func NewTradeTransactionCommand(cmd TradeCommand, customComment string, expiration int64, offset int, order uint, price float64, sl float64, symbol string, tp float64, tradeType TradeType, volume float64) *Command {
 	return &Command{
 		Command: "tradeTransaction",
 		Arguments: &tradeTransactionRequest{

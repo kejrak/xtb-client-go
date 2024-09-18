@@ -63,7 +63,7 @@ func (c *Client) executeCommand(command *Command, response interface{}) error {
 		c.violationCount = 0
 	}
 
-	c.lastRequestAt = time.Now()
+	c.lastRequestAt = now
 
 	// Convert command to JSON.
 	commandJSON, err := json.Marshal(command)

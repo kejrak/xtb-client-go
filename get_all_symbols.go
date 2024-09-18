@@ -54,7 +54,7 @@ type GetAllSymbolsResponse struct {
 	ReturnData []*SymbolRecord `json:"returnData"`
 }
 
-func newGetAllSymbolsCommand() *Command {
+func NewGetAllSymbolsCommand() *Command {
 	return &Command{
 		Command: "getAllSymbols",
 	}
