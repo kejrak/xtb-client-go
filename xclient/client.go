@@ -77,7 +77,7 @@ func NewClient(connectionType, userID, password string) (*Client, error) {
 	c.conn = conn
 
 	loginResponse, err := c.Login(userID, password)
-	if err != nil {
+	if err != nil || !loginResponse.Status {
 		log.Fatalf("Login failed: %v", err)
 	}
 
