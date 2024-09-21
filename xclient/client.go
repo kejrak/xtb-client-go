@@ -20,7 +20,7 @@ const (
 	maxViolationCount = 5 // User should send requests in 200 ms intervals. This rule can be broken, but if it happens 6 times in a row the connection is dropped.
 )
 
-func (c *client) Close() {
+func (c *Client) Close() {
 	if c.conn != nil {
 		c.conn.Close()
 	}
@@ -31,7 +31,7 @@ func (c *client) Close() {
 	close(c.StreamChannel)
 }
 
-type client struct {
+type Client struct {
 	websocketURL       string
 	websocketStreamURL string
 	conn               *websocket.Conn
@@ -43,7 +43,7 @@ type client struct {
 	StreamChannel      chan StreamMessage
 }
 
-func NewClient(connectionType, userID, password string) (*client, error) {
+func NewClient(connectionType, userID, password string) (*Client, error) {
 
 	var websocketURL string
 	var websocketStreamURL string
@@ -57,7 +57,7 @@ func NewClient(connectionType, userID, password string) (*client, error) {
 		websocketStreamURL = websocketBaseURL + "/realStream"
 	}
 
-	c := &client{
+	c := &Client{
 		websocketURL:       websocketURL,
 		websocketStreamURL: websocketStreamURL,
 		violationCount:     0,
@@ -92,7 +92,7 @@ func NewClient(connectionType, userID, password string) (*client, error) {
 	return c, nil
 }
 
-func (c *client) ReadStream() {
+func (c *Client) ReadStream() {
 	for {
 		c.streamConn.SetReadDeadline(time.Now().Add(5 * time.Second))
 		_, message, err := c.streamConn.ReadMessage()
@@ -112,7 +112,7 @@ func (c *client) ReadStream() {
 	}
 }
 
-func (c *client) dialWebSocket(urlStr string) (*websocket.Conn, error) {
+func (c *Client) dialWebSocket(urlStr string) (*websocket.Conn, error) {
 	dialer := websocket.DefaultDialer
 	dialer.HandshakeTimeout = 10 * time.Second
 
@@ -124,15 +124,15 @@ func (c *client) dialWebSocket(urlStr string) (*websocket.Conn, error) {
 	return conn, nil
 }
 
-func (c *client) executeCommand(command interface{}, response interface{}) error {
+func (c *Client) executeCommand(command interface{}, response interface{}) error {
 	return c.executeWebSocketCommand(c.conn, command, response)
 }
 
-func (c *client) executeStreamCommand(command interface{}) error {
+func (c *Client) executeStreamCommand(command interface{}) error {
 	return c.executeWebSocketCommand(c.streamConn, command, nil)
 }
 
-func (c *client) executeWebSocketCommand(conn *websocket.Conn, command interface{}, response interface{}) error {
+func (c *Client) executeWebSocketCommand(conn *websocket.Conn, command interface{}, response interface{}) error {
 	if err := c.checkRateLimit(); err != nil {
 		return err
 	}
@@ -151,7 +151,7 @@ func (c *client) executeWebSocketCommand(conn *websocket.Conn, command interface
 	return c.sendAndReceive(conn, command, response)
 }
 
-func (c *client) checkRateLimit() error {
+func (c *Client) checkRateLimit() error {
 	now := time.Now()
 
 	if now.Sub(c.lastRequestAt) < 200*time.Millisecond {
@@ -170,7 +170,7 @@ func (c *client) checkRateLimit() error {
 	return nil
 }
 
-func (c *client) sendAndReceive(conn *websocket.Conn, command interface{}, response interface{}) error {
+func (c *Client) sendAndReceive(conn *websocket.Conn, command interface{}, response interface{}) error {
 	now := time.Now()
 
 	conn.SetWriteDeadline(now.Add(time.Second))

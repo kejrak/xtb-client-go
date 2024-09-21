@@ -5,7 +5,7 @@ import (
 )
 
 // SubscribeGetBalance subscribes to getBalance command described here: http://developers.xstore.pro/documentation/#streamgetBalance
-func (c *client) SubscribeGetBalance() error {
+func (c *Client) SubscribeGetBalance() error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribeGetBalanceCommand(c.streamSessionID))
 	if err != nil {
@@ -17,7 +17,7 @@ func (c *client) SubscribeGetBalance() error {
 }
 
 // SubscribeGetCandles subscribes to getCandles command described here: http://developers.xstore.pro/documentation/#streamgetCandles
-func (c *client) SubscribeGetCandles(symbol string) error {
+func (c *Client) SubscribeGetCandles(symbol string) error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribeGetCandlesCommand(c.streamSessionID, symbol))
 	if err != nil {
@@ -28,7 +28,7 @@ func (c *client) SubscribeGetCandles(symbol string) error {
 }
 
 // SubscribeGetKeepAlive subscribes to getKeepAlive command described here: http://developers.xstore.pro/documentation/#streamgetKeepAlive
-func (c *client) SubscribeGetKeepAlive() error {
+func (c *Client) SubscribeGetKeepAlive() error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribeGetKeepAliveCommand(c.streamSessionID))
 	if err != nil {
@@ -39,7 +39,7 @@ func (c *client) SubscribeGetKeepAlive() error {
 }
 
 // SubscribeGetNews subscribes to getNews command described here: http://developers.xstore.pro/documentation/#streamgetNews
-func (c *client) SubscribeGetNews() error {
+func (c *Client) SubscribeGetNews() error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribeGetNewsCommand(c.streamSessionID))
 	if err != nil {
@@ -50,7 +50,7 @@ func (c *client) SubscribeGetNews() error {
 }
 
 // SubscribeGetProfits subscribes to getProfits command described here: http://developers.xstore.pro/documentation/#streamgetProfits
-func (c *client) SubscribeGetProfits() error {
+func (c *Client) SubscribeGetProfits() error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribeGetProfitsCommand(c.streamSessionID))
 	if err != nil {
@@ -61,7 +61,7 @@ func (c *client) SubscribeGetProfits() error {
 }
 
 // SubscribeGetTickPrices subscribes to getTickPrices command described here: http://developers.xstore.pro/documentation/#streamgetTickPrices
-func (c *client) SubscribeGetTickPrices(symbol string, minArrivalTime *int, maxLevel *uint8) error {
+func (c *Client) SubscribeGetTickPrices(symbol string, minArrivalTime *int, maxLevel *uint8) error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribeGetTickPricesCommand(c.streamSessionID, symbol, minArrivalTime, maxLevel))
 	if err != nil {
@@ -72,7 +72,7 @@ func (c *client) SubscribeGetTickPrices(symbol string, minArrivalTime *int, maxL
 }
 
 // SubscribeGetTrades subscribes to getTrades command described here: http://developers.xstore.pro/documentation/#streamgetTrades
-func (c *client) SubscribeGetTrades() error {
+func (c *Client) SubscribeGetTrades() error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribeGetTradesCommand(c.streamSessionID))
 	if err != nil {
@@ -83,7 +83,7 @@ func (c *client) SubscribeGetTrades() error {
 }
 
 // SubscribeGetTradeStatus subscribes to getTradeStatus command described here: http://developers.xstore.pro/documentation/#streamgetTradeStatus
-func (c *client) SubscribeGetTradeStatus() error {
+func (c *Client) SubscribeGetTradeStatus() error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribeGetTradeStatusCommand(c.streamSessionID))
 	if err != nil {
@@ -94,7 +94,7 @@ func (c *client) SubscribeGetTradeStatus() error {
 }
 
 // SubscribePing subscribes to ping command described here: http://developers.xstore.pro/documentation/#streamping
-func (c *client) SubscribePing() error {
+func (c *Client) SubscribePing() error {
 
 	err := c.executeStreamCommand(xtb.NewSubscribePingCommand(c.streamSessionID))
 	if err != nil {
