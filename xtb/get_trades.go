@@ -6,7 +6,12 @@ type getTradesRequest struct {
 
 type GetTradesResponse struct {
 	Response
-	ReturnData []TradeRecord
+	ReturnData []TradeRecord `json:"returnData"`
+}
+
+type StreamGetTradesResponse struct {
+	StreamResponse
+	Data StreamingTradeRecord `json:"data"`
 }
 
 func NewGetTradesCommand(openedOnly bool) *Command {
@@ -15,5 +20,12 @@ func NewGetTradesCommand(openedOnly bool) *Command {
 		Arguments: &getTradesRequest{
 			OpenedOnly: openedOnly,
 		},
+	}
+}
+
+func NewSubscribeGetTradesCommand(streamSessionID string) *StreamCommand {
+	return &StreamCommand{
+		Command:         "getTrades",
+		StreamSessionID: streamSessionID,
 	}
 }

@@ -2,23 +2,16 @@
 
 For detailed API documentation and official support, refer to the [XTB API Documentation](http://developers.xstore.pro/documentation/). It provides comprehensive information on how to use the various endpoints, authentication methods, and other advanced features offered by XTB's trading platform.
 
-## Example Usage and Initialization
+## Example Usage and Initialization of demo environment
 
 ```
-	serverURL := "wss://ws.xtb.com/real"    
-	c, err := xtb.NewClient(serverURL, nil) 
+	c, err := xclient.NewClient("demo", userID, password)
 	if err != nil {
-		log.Fatalf("Failed to create client: %v", err)
+		log.Fatalf("Failed to initialize client: %v", err)
 	}
+
 	defer c.Close()
 
-	userID := <USERID>                      
-	password := <PASSWORD>
-
-	_, err = c.Login(userID, password)
-	if err != nil {
-		log.Fatalf("Login failed: %v", err)
-	}
 ```
 
 ## Disclaimer

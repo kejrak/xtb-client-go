@@ -29,7 +29,7 @@ func NewGetIbsHistoryCommand(end, start time.Time) *Command {
 		Command: "getIbsHistory",
 		Arguments: &getIbsHistoryRequest{
 			End:   Time(end),
-			Start: Time(start),
+			Start: Time(end),
 		},
 	}
 }

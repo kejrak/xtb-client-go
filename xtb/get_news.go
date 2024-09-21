@@ -16,9 +16,21 @@ type NewsTopicRecord struct {
 	Title      string `json:"title"`      // News title.
 }
 
+type StreamingNewsRecord struct {
+	Body  string `json:"body"`  // Body.
+	Key   string `json:"key"`   // News key.
+	Time  Time   `json:"time"`  // Time.
+	Title string `json:"title"` // News title.
+}
+
 type GetNewsResponse struct {
 	Response
 	ReturnData []NewsTopicRecord `json:"returnData"`
+}
+
+type StreamGetNewsResponse struct {
+	StreamResponse
+	Data StreamingNewsRecord `json:"data"`
 }
 
 func NewGetNewsCommand(end, start time.Time) *Command {
@@ -26,7 +38,14 @@ func NewGetNewsCommand(end, start time.Time) *Command {
 		Command: "getNews",
 		Arguments: &getNewsRequest{
 			End:   Time(end),
-			Start: Time(start),
+			Start: Time(end),
 		},
+	}
+}
+
+func NewSubscribeGetNewsCommand(streamSessionID string) *StreamCommand {
+	return &StreamCommand{
+		Command:         "getNews",
+		StreamSessionID: streamSessionID,
 	}
 }
