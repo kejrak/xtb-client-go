@@ -1,6 +1,10 @@
 package xtb
 
-import "time"
+import (
+	"fmt"
+	"strconv"
+	"time"
+)
 
 type Period int
 type TradeCommand uint8
@@ -142,4 +146,30 @@ type StreamTickCommand struct {
 	Symbol          string `json:"symbol"`          // Symbol for the command.
 	MinArrivalTime  *int   `json:"minArrivalTime"`  // This field is optional and defines the minimal interval in milliseconds between any two consecutive updates. If this field is not present, or it is set to 0 (zero), ticks - if available - are sent to the client with interval equal to 200 milliseconds. In order to obtain ticks as frequently as server allows you, set it to 1 (one).
 	MaxLevel        *uint8 `json:"maxLevel"`        // This field is optional and specifies the maximum level of the quote that the user is interested in. If this field is not specified, the subscription is active for all levels that are managed in the system.
+}
+
+// Time is a wrapper around time.Time to handle custom JSON serialization/deserialization.
+type Time time.Time
+
+// ToTime converts the custom Time type to the standard time.Time type.
+func (t *Time) ToTime() time.Time {
+	return time.Time(*t)
+}
+
+// UnmarshalJSON customizes the unmarshalling of Time from JSON.
+// It converts a JSON timestamp (milliseconds since Unix epoch) to a Time object.
+func (t *Time) UnmarshalJSON(text []byte) error {
+	timestamp, err := strconv.ParseInt(string(text), 10, 64)
+	if err != nil {
+		return fmt.Errorf("failed to parse timestamp: %w", err)
+	}
+
+	*t = Time(time.UnixMilli(timestamp))
+	return nil
+}
+
+// MarshalJSON customizes the marshalling of Time to JSON.
+// It converts a Time object to its JSON representation (timestamp in milliseconds).
+func (t Time) MarshalJSON() ([]byte, error) {
+	return []byte(strconv.FormatInt(time.Time(t).UnixMilli(), 10)), nil
 }
