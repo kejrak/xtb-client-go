@@ -179,17 +179,15 @@ func (c *Client) sendAndReceive(conn *websocket.Conn, command interface{}, respo
 		return fmt.Errorf("failed to send command: %w", err)
 	}
 
-	if response != nil {
-		conn.SetReadDeadline(now.Add(10 * time.Second))
-		if err := conn.ReadJSON(response); err != nil {
-			log.Print("Failed to read socket response")
-			return fmt.Errorf("failed to read response: %w", err)
-		}
+	conn.SetReadDeadline(now.Add(10 * time.Second))
+	if err := conn.ReadJSON(response); err != nil {
+		log.Print("Failed to read socket response")
+		return fmt.Errorf("failed to read response: %w", err)
+	}
 
-		if result, ok := response.(*xtb.Response); ok && !result.Status {
-			log.Print("Received error response")
-			return fmt.Errorf("error in response: %s", result.ErrorDescr)
-		}
+	if result, ok := response.(*xtb.Response); ok && !result.Status {
+		log.Print("Received error response")
+		return fmt.Errorf("error in response: %s", result.ErrorDescr)
 	}
 
 	return nil
