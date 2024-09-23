@@ -139,7 +139,7 @@ type StreamCandleCommand struct {
 	Symbol          string `json:"symbol"`          // Symbol for the command.
 }
 
-// Stream Candle Command represents the structure of a candle command to be sent to the XTB API.
+// Stream Tick Command represents the structure of a tick command to be sent to the XTB API.
 type StreamTickCommand struct {
 	Command         string `json:"command"`         // The type of command.
 	StreamSessionID string `json:"streamSessionId"` // Stream Session ID.
