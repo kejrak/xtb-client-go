@@ -148,6 +148,8 @@ func (c *Client) executeWebSocketCommand(conn *websocket.Conn, command interface
 		return fmt.Errorf("command size exceeds 1KB limit")
 	}
 
+	defer time.Sleep(500 * time.Millisecond)
+
 	return c.sendAndReceive(conn, command, response)
 }
 
