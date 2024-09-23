@@ -148,7 +148,7 @@ func (c *Client) executeWebSocketCommand(conn *websocket.Conn, command interface
 		return fmt.Errorf("command size exceeds 1KB limit")
 	}
 
-	defer time.Sleep(500 * time.Millisecond)
+	defer time.Sleep(100 * time.Millisecond)
 
 	return c.sendAndReceive(conn, command, response)
 }
@@ -182,7 +182,7 @@ func (c *Client) sendAndReceive(conn *websocket.Conn, command interface{}, respo
 	}
 
 	if response != nil {
-		conn.SetReadDeadline(now.Add(10 * time.Second))
+		conn.SetReadDeadline(now.Add(30 * time.Second))
 		if err := conn.ReadJSON(response); err != nil {
 			log.Print("Failed to read socket response")
 			return fmt.Errorf("failed to read response: %w", err)
