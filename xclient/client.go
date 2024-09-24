@@ -10,6 +10,8 @@ import (
 	"github.com/kejrak/xtb-client-go/xtb"
 )
 
+type StreamResponse interface{}
+
 type StreamMessage struct {
 	Command string          `json:"command"`
 	Data    json.RawMessage `json:"data"`
@@ -40,7 +42,7 @@ type Client struct {
 	lastRequestAt      time.Time
 	violationCount     int
 	maxViolationCount  int
-	StreamChannel      chan StreamMessage
+	StreamChannel      chan StreamResponse
 }
 
 func NewClient(connectionType, userID, password string) (*Client, error) {
@@ -64,7 +66,7 @@ func NewClient(connectionType, userID, password string) (*Client, error) {
 		maxViolationCount:  maxViolationCount,
 	}
 
-	c.StreamChannel = make(chan StreamMessage)
+	c.StreamChannel = make(chan StreamResponse)
 
 	dialer := websocket.DefaultDialer
 	dialer.HandshakeTimeout = 10 * time.Second
@@ -108,7 +110,75 @@ func (c *Client) ReadStream() {
 			continue
 		}
 
-		c.StreamChannel <- streamMessage
+		// Switch to handle message types
+		switch streamMessage.Command {
+		case "balance":
+			var balanceResponse xtb.StreamingBalanceRecord
+			err = json.Unmarshal(streamMessage.Data, &balanceResponse)
+			if err != nil {
+				log.Printf("Failed to unmarshal StreamingBalanceRecord: %v", err)
+				continue
+			}
+			c.StreamChannel <- balanceResponse
+		case "candle":
+			var candleResponse xtb.StreamingCandleRecord
+			err = json.Unmarshal(streamMessage.Data, &candleResponse)
+			if err != nil {
+				log.Printf("Failed to unmarshal StreamingCandleRecord: %v", err)
+				continue
+			}
+			c.StreamChannel <- candleResponse
+		case "keepAlive":
+			var keepAliveResponse xtb.StreamingKeepAliveRecord
+			err = json.Unmarshal(streamMessage.Data, &keepAliveResponse)
+			if err != nil {
+				log.Printf("Failed to unmarshal StreamingKeepAliveRecord: %v", err)
+				continue
+			}
+			c.StreamChannel <- keepAliveResponse
+		case "news":
+			var newsResponse xtb.StreamingNewsRecord
+			err = json.Unmarshal(streamMessage.Data, &newsResponse)
+			if err != nil {
+				log.Printf("Failed to unmarshal StreamingKeepAliveRecord: %v", err)
+				continue
+			}
+			c.StreamChannel <- newsResponse
+		case "profit":
+			var profitResponse xtb.StreamingProfitRecord
+			err = json.Unmarshal(streamMessage.Data, &profitResponse)
+			if err != nil {
+				log.Printf("Failed to unmarshal StreamingProfitRecord: %v", err)
+				continue
+			}
+			c.StreamChannel <- profitResponse
+		case "tickPrices":
+			var tickPricesResponse xtb.StreamingTickRecord
+			err = json.Unmarshal(streamMessage.Data, &tickPricesResponse)
+			if err != nil {
+				log.Printf("Failed to unmarshal StreamingTickRecord: %v", err)
+				continue
+			}
+			c.StreamChannel <- tickPricesResponse
+		case "trade":
+			var tradeResponse xtb.StreamingTradeRecord
+			err = json.Unmarshal(streamMessage.Data, &tradeResponse)
+			if err != nil {
+				log.Printf("Failed to unmarshal StreamingTradeRecord: %v", err)
+				continue
+			}
+			c.StreamChannel <- tradeResponse
+		case "tradeStatus":
+			var tradeStatusResponse xtb.StreamingTradeStatusRecord
+			err = json.Unmarshal(streamMessage.Data, &tradeStatusResponse)
+			if err != nil {
+				log.Printf("Failed to unmarshal StreamingTradeStatusRecord: %v", err)
+				continue
+			}
+			c.StreamChannel <- tradeStatusResponse
+		default:
+			c.StreamChannel <- streamMessage
+		}
 	}
 }
 
