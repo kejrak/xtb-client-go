@@ -38,7 +38,7 @@ func NewGetNewsCommand(end, start time.Time) *Command {
 		Command: "getNews",
 		Arguments: &getNewsRequest{
 			End:   Time(end),
-			Start: Time(end),
+			Start: Time(start),
 		},
 	}
 }
