@@ -80,7 +80,7 @@ func NewClient(connectionType, userID, password string) (*Client, error) {
 
 	loginResponse, err := c.Login(userID, password)
 	if err != nil || !loginResponse.Status {
-		log.Fatalf("Login failed: %v", err)
+		return nil, fmt.Errorf("login failed. error: %w, error code: %s, error descripton: %s", err, loginResponse.ErrorCode, loginResponse.ErrorDescr)
 	}
 
 	c.streamSessionID = loginResponse.StreamSessionID
