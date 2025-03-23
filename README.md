@@ -2,7 +2,8 @@
 
 ## Important Reminder (as of 14 March 2025) !!!
 
-Due to XTB API access being disabled as of 14.03.2025, any code within this project relying on the XTB API will currently not function as intended. Please refrain from using or integrating XTB API calls until further notice. We are actively exploring alternative solutions and will update this documentation with any changes or new instructions as they become available.
+Due to XTB API access being disabled as of 14.03.2025, any code within this project relying on the XTB API will not function as intended.
+http://developers.xstore.pro
 
 ---
 
